@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+import api from "../api/axios";
+// import axios from "axios";
 import "../styles/homePage.css";
 import HomeCard from "../components/HomeCard";
 import { Button } from "reactstrap";
@@ -12,7 +13,8 @@ export function HomePage() {
 
   async function fetchProtectedRoute() {
     try {
-      const res = await axios.get('/api/me', { withCredentials: true });
+      // const res = await axios.get('/api/me', { withCredentials: true });
+      const res = await api.get("/me");
       setIsAuthenticated(true);
       return true;
     } catch (error) {
@@ -30,7 +32,8 @@ export function HomePage() {
 
   async function handleLogout() {
       try {
-          await axios.get('/api/logout', { withCredentials: true })
+          // await axios.get('/api/logout', { withCredentials: true })
+          await api.get("/logout");
           setIsAuthenticated(false);
           setIsLogoutMessage(true);
 

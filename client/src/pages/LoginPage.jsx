@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+import api from "../api/axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
@@ -11,7 +12,8 @@ function LoginPage() {
 
     async function fetchProtectedRoute() {
         try {
-            const response = await axios.get('/api/me', { withCredentials: true })
+            // const response = await axios.get('/api/me', { withCredentials: true })
+            const response = await api.get("/me");
             setEmail(response.data.email)
             setIsAuthenticated(true)
         } catch (error) {
@@ -24,7 +26,8 @@ function LoginPage() {
 
     async function handleLogout() {
         try {
-            await axios.get('http://localhost:3000/logout', { withCredentials: true })
+            // await axios.get('/api/logout', { withCredentials: true })
+            await api.get("/logout");
             setIsAuthenticated(false)
             navigate("/login", { replace: true });
         } catch (error) {

@@ -1,0 +1,32 @@
+
+
+SERVER SIDE:
+    - Add script: "start": "node index.js"
+    - Add Middleware Security:  import helmet from "helmet";   
+    - Add Package.json:         "start": "NODE_ENV=production node index.js",
+    - Add Cookies:
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",   // allow cross-site cookies in production
+                secure: process.env.NODE_ENV === "production",                       // use HTTPS cookies in production
+                maxAge: 1000 * 60 * 6
+                                
+
+CLIENT SIDE:
+    - Add folder: Create a /api folder for axios
+        (
+            import axios from 'axios';
+
+            const api = axios.create({
+                baseURL: import.meta.env.VITE_API_URL,
+                withCredentials: true,
+            });
+
+            export default api;
+        )
+        REPLACE :   import axios from "axios"; 
+        WITH    :   import api from "../api/axios";
+
+                :   const response = await axios.get('/api/me', { withCredentials: true })
+                :   const response = await api.get('/api/me')
+    - ENV files: 
+        - Have both:    (1) Production, (2) Development
+                   :    VITE_API_URL=http://localhost:3000

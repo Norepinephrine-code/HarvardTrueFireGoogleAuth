@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import CreateIcon from "@mui/icons-material/Create";
 import IconButton from "@mui/material/IconButton";
 
@@ -65,7 +66,8 @@ function CreateReview(props) {
       let response;
 
       try {
-        response = await axios.post(`/api/createReview/${agentId}`, payload);
+        // response = await axios.post(`/api/createReview/${agentId}`, payload);
+        response = await api.post(`/createReview/${agentId}`, payload);
         if (response.status === 201) {
           alert("Successful Review!");
         } else {
@@ -91,7 +93,7 @@ function CreateReview(props) {
 
   async function fetchProtectedRoute() {
     try {
-      const res = await axios.get('/api/me', { withCredentials: true });
+      const res = await api.get(`me`);
       setIsAuthenticated(true);
       setAuthError("");
       return true;

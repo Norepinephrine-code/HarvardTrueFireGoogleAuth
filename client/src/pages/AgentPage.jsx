@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import SkeletonLoading from "../components/SkeletonLoading";
 import AgentCard from "../components/AgentCard";
 import agentArray from "../assets/agentArray";
@@ -23,7 +24,8 @@ export function AgentPage() {
     React.useEffect( () => {
       async function loadAgents() {
         try {
-          const response = await axios.get("/api/allAgents");
+          // const response = await axios.get("/api/allAgents");//
+          const response = await api.get("/allAgents");
           const data = response.data; // axios puts JSON response here
           console.log(data);
           setAgentCache(data);        // source of truth

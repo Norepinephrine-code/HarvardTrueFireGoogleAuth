@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import { createPortal } from "react-dom";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
@@ -57,7 +58,8 @@ function CreateConfessionButton(props) {
 
     let response;
     try {
-      response = await axios.post("/api/posts", payload);
+      // response = await axios.post("/api/posts", payload);
+      response = await api.post("/posts", payload);
       if (response.status === 201) {
         alert("Successful Confession!");
       } else {

@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import { useParams } from "react-router-dom";
 import CreateReview from "../components/CreateReview";
 import { createAgentReviewItem } from "../components/AgentReviewItem";
@@ -19,7 +20,8 @@ function AgentDetailPage() {
   React.useEffect(() => {
     async function fetchAgent() {
       try {
-        const response = await axios.get(`/api/agent/${id}`);
+        // const response = await axios.get(`/api/agent/${id}`);
+        const response = await api.get(`/agent/${id}`);
         setAgent(response.data);
         setIsError(false);
       } catch (err) {

@@ -9,6 +9,8 @@ import GoogleStrategy from "passport-google-oauth20";    // Google OAuth
 import session from "express-session";                  // Session Keeper
 import { config as envConfig } from "dotenv";           // Environment Variable
 
+import helmet from "helmet";
+
 import { 
   GET_AGENT_WITH_REVIEWS,
   GET_ALL_AGENTS,
@@ -18,9 +20,11 @@ import {
   POST_CONFESSION
  } from "./SQLStatements.js";
 
+
 envConfig();                                            // for environment variables
 const app = express();                                  // Server Setup
 const PORT = Number(process.env.SERVER_PORT);           // Port Number
+app.use(helmet());                                      // Middleware Security
 
 app.use(express.json());                                // Similar to Body Parse but for handling the Axios default
 app.use(express.urlencoded({ extended: true }));        // Similar to Body Parse but for handling the Axios default
@@ -38,8 +42,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      sameSite: "lax",   // "lax" dev same-site works across localhost ports
-      secure: false,      //   Currently false (http), true (https) in production over HTTPS
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",   // allow cross-site cookies in production
+      secure: process.env.NODE_ENV === "production",                       // use HTTPS cookies in production
       maxAge: 1000*60*60
     }
   })

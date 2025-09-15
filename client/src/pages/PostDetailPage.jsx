@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import { useParams } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -15,7 +16,8 @@ function PostDetailPage() {
 
   async function fetchPostById() {
     try {
-        const response = await axios.get(`/api/post/${postId}`);
+        // const response = await axios.get(`/api/post/${postId}`);
+        const response = await api.get(`/post/${postId}`);
         setPost(response.data);
     } catch (err) {
         if (!err.response) {

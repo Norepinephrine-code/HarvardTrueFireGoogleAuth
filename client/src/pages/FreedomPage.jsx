@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import { useInView } from "react-intersection-observer";
 import ConfessionItem from "../components/ConfessionItem";
 import CreateConfessionFAB from "../components/CreateConfessionFAB";
@@ -44,7 +45,8 @@ export function FreedomPage() {
                         limit: DISPLAY_COUNT, 
                         cursor: cursor ?? undefined 
                       };
-      const response = await axios.get("/api/posts", { params });
+      // const response = await axios.get("/api/posts", { params });
+      const response = await api.get("/posts", { params });
       const data = response.data;
       console.log(data);
       // Destructure the response

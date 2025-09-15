@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../api/axios";
 import { useInView } from "react-intersection-observer";
 import ConfessionItem from "../components/ConfessionItem";
 import CreateConfessionFAB from "../components/CreateConfessionFAB";
@@ -34,7 +35,8 @@ const loadMore = React.useCallback(async () => {
                       limit: DISPLAY_COUNT, 
                       cursor: cursor ?? undefined 
                     };
-    const response = await axios.get("/api/posts", { params });
+    // const response = await axios.get("/api/posts", { params });
+    const response = await api.get("/posts", {  params  });
     const data = response.data;
     
     // Destructure the response
