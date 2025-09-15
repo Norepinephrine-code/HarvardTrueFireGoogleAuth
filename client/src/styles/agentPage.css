@@ -1,0 +1,17 @@
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+
+.blinkInputError {
+  animation: blink 3s infinite;
+}

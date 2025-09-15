@@ -1,0 +1,12 @@
+      <div className="home-card p-5 rounded">
+        <h1 className="display-4 fw-bold mb-3 p-2">Harvard Safespace</h1>
+        <p className="lead mb-4">
+          This platform is a community-driven space where tenants can share honest
+          reviews about their agents. Our goal is to promote transparency, hold
+          agents accountable, and help future tenants make informed decisions.
+        </p>
+        <p className="mb-0">
+          Explore agent profiles, read reviews, and contribute your own experiences.  
+          Together we build a fairer rental community.
+        </p>
+      </div>

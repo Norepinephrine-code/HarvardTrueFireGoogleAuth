@@ -1,0 +1,195 @@
+.home-page {
+  background-color: #121212; /* dark background */
+  min-height: 100vh;
+  color: #f5f5f5;
+  padding: 2rem;
+}
+
+.home-card {
+  background-color: #1e1e1e; /* dark card */
+  border: 1px solid #2c2c2c;
+  max-width: 700px;
+  width: 100%;
+  color: #dddddd;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.home-card h1 {
+  font-family: "Cinzel", serif;
+  color: #ffffff;
+  font-size: 2.5rem; /* a bit smaller to balance with logo */
+  transform: translateX(-2px);
+}
+
+.home-card img {
+  max-width: 80px; /* or whatever scale you want */
+  height: auto;    /* keeps aspect ratio */
+}
+
+.home-card p.lead {
+  color: #cccccc;
+  font-size: 1.2rem;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.home-card {
+  animation: floatUp 0.8s ease-out forwards;
+}
+
+/* "shine" text effect */
+.shine {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #2ba0ff 20%,
+    #b1dcff 40%,
+    #ffffff 60%
+  );
+  background-size: 300% auto;  /* wider so shine can exit fully */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineMove 15s linear infinite; 
+}
+
+@keyframes shineMove {
+  from {
+    background-position: -300% center; /* start well off the left */
+  }
+  to {
+    background-position: 300% center;  /* end well off the right */
+  }
+}
+
+/* Classy, animated dark-mode button */
+.logout-btn {
+  --btn-bg: #1e1e1e;
+  --btn-fg: #e8f0ff;
+  --btn-glow: #2ba0ff;     /* matches your shine gradient */
+  --btn-border1: #2ba0ff;
+  --btn-border2: #b1dcff;
+
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--btn-fg);
+  background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
+  padding: 0.9rem 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 14px;
+  backdrop-filter: blur(4px);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+  box-shadow:
+    0 0 0 rgba(43,160,255,0),
+    inset 0 0 0 rgba(255,255,255,0.02);
+}
+
+/* Subtle gradient outline ring */
+.logout-btn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 15px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--btn-border1), var(--btn-border2));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.25;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+/* Shimmer sweep on hover */
+.logout-btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255,255,255,0.08) 40%,
+    rgba(255,255,255,0.22) 50%,
+    rgba(255,255,255,0.08) 60%,
+    transparent 100%
+  );
+  transform: skewX(-15deg);
+  transition: left 700ms ease;
+  pointer-events: none;
+  opacity: 0.0;
+}
+
+.logout-btn:hover::after {
+  left: -5%;
+  opacity: 1;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.45),
+    0 0 18px rgba(43,160,255,0.25);
+  border-color: rgba(255,255,255,0.16);
+}
+
+.logout-btn:active {
+  transform: translateY(0) scale(0.985);
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.55),
+    0 0 10px rgba(43,160,255,0.18);
+}
+
+/* Gentle glow when focusing via keyboard */
+.logout-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(43,160,255,0.25),
+    0 0 18px rgba(43,160,255,0.35);
+}
+
+/* Strengthen the outline on hover a bit */
+.logout-btn:hover::before {
+  opacity: 0.45;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .logout-btn,
+  .logout-btn::after {
+    transition: none;
+  }
+  .logout-btn:hover {
+    transform: none;
+  }
+}
+
+/* Logged-out confirmation message styling */
+.logout-msg {
+  margin-top: 1rem;
+  color: #cfe7ff;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  animation: floatUp 0.8s ease-out forwards;
+  text-shadow: 0 0 12px rgba(43,160,255,0.25);
+}

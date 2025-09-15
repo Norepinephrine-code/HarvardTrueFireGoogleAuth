@@ -1,0 +1,124 @@
+import React from "react";
+import ConfessionItem from "../components/ConfessionItem";
+import CreateConfessionFAB from "../components/CreateConfessionFAB";
+import "../styles/freedomPage.css";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import Button from "@mui/material/Button";
+
+import PostArray from "../assets/postsArray";
+import TrendingPosts from "../assets/trendingPosts";
+
+export function FreedomPage() {
+
+  const [displayConfessionPageIndex, setDisplayConfessionPageIndex] = React.useState(0);
+  const DISPLAY_COUNT = 10;
+  const MAX_PAGE_INDEX = Math.ceil(PostArray.length / DISPLAY_COUNT)-1;
+
+  const displayConfession = React.useMemo(() => {
+    const start = displayConfessionPageIndex * DISPLAY_COUNT;
+    return PostArray.slice(start, start + DISPLAY_COUNT);
+  }, [displayConfessionPageIndex, PostArray]);
+
+  function changePage(event) {
+    const direction = event.currentTarget.dataset.direction; // "prev" or "next"
+    setDisplayConfessionPageIndex((prev) => {
+      if (direction === "prev" && prev > 0) return prev - 1;
+      if (direction === "next" && prev < MAX_PAGE_INDEX) return prev + 1;
+    });
+  }
+
+  const prevDisabled = displayConfessionPageIndex === 0;
+  const nextDisabled = displayConfessionPageIndex === MAX_PAGE_INDEX;
+
+  return (
+    
+    <div className="freedom-page">
+      <div className="container-fluid d-flex flex-column h-100 px-0 mx-0">
+        <div className="row g-0 h-100 freedom-row"> 
+          {/* Big column */}
+          <div
+            className="col-12 col-md-9 mx-0 px-0 h-100"
+            style={{ minHeight: 0, overflowY: "auto" }}
+          >
+            
+            <h1 className="sticky-top d-flex justify-content-between align-items-center">
+              <span>Most Recent</span>
+
+
+              <span>
+                <Button 
+                  data-direction="prev" 
+                  onClick={changePage}
+                  disabled={prevDisabled}
+                  sx={{ opacity: prevDisabled ? 0.3 : 1 }}
+                >
+                  <NavigateBeforeIcon sx={{ color: "darkgray" }}/>
+                </Button>
+
+                <Button 
+                  data-direction="next" 
+                  onClick={changePage}
+                  disabled={nextDisabled}
+                  sx={{ opacity: nextDisabled ? 0.3 : 1 }}
+                >
+                  <NavigateNextIcon sx={{ color: "darkgray" }}/>
+                </Button>
+              </span>
+
+              {/* DISPLAY:  Trigger on md onwards*/}
+              <span className="me-4 my-2 d-none d-md-block">
+                <CreateConfessionFAB label="Create Confession" />
+              </span>
+
+              {/* DISPLAY:  Disappear on md onwards*/}
+              <span className="me-4 my-2 d-block d-md-none">
+                <CreateConfessionFAB label={null} />
+              </span>
+
+
+
+            </h1>
+
+
+            <ul className="mt-0 pt-0">
+              {displayConfession.map((confessionItem) => (
+                <ConfessionItem
+                  key={confessionItem.id}
+                  id={confessionItem.id}
+                  title={confessionItem.title}
+                  content={confessionItem.content}
+                  author={confessionItem.author}
+                  date={confessionItem.date}
+                />
+              ))}
+            </ul>
+          </div>
+
+          {/* Small column */}
+          <div
+            className="d-none d-md-block col-md-3 mx-0 px-0 h-100"
+            style={{ minHeight: 0, overflowY: "auto" }}
+          >
+            <h1 className="sticky-top">Controversials</h1>
+            <ul>
+              {TrendingPosts.map((confessionItem) => (
+                <ConfessionItem
+                  key={confessionItem.id}
+                  id={confessionItem.id}
+                  title={confessionItem.title}
+                  author={confessionItem.author}
+                  date={confessionItem.date}
+                />
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  );
+}
+
+export default FreedomPage;

@@ -1,0 +1,46 @@
+.agent-detail-card {
+  background-color: #1e1e1e;   /* dark card background */
+  border: 1px solid #2c2c2c;
+  border-radius: 0.5rem;
+  color: #f5f5f5;
+  transition: transform 0.2s ease;
+}
+
+.agent-detail-card:hover {
+  transform: scale(1.02);
+}
+
+.agent-detail-card h5 {
+  color: #e0e0e0;  /* username */
+}
+
+.agent-detail-card small {
+  color: #aaaaaa;  /* date */
+}
+
+.agent-detail-card h6 {
+  color: #ffcc66;  /* review title */
+}
+
+.agent-detail-card p {
+  color: #dddddd;  /* content */
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+h1 {
+  background: transparent;
+  border: none !important;   /* remove any bootstrap border */
+  box-shadow: none !important; /* remove shadows if any */
+}

@@ -1,0 +1,96 @@
+/* --- Dark theme tokens --- */
+:root {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --surface: #11161c;
+  --surface-hover: #171e26;
+  --text: #e6eaf0;
+  --muted: #9aa3ad;
+  --border: #232b35;
+  --link: #60a5fa;         /* edit/primary links */
+  --link-hover: #93c5fd;
+  --danger: #f87171;       /* delete links */
+  --danger-hover: #fca5a5;
+}
+
+/* Page/base */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Remove bullets and reset padding/margin */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style each confession item */
+.confession-item {
+  padding: 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.confession-item:hover {
+  background: var(--surface-hover);
+}
+
+/* Title styling */
+.confession-item h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+/* Small text styling */
+.confession-item small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Content styling */
+.confession-item p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Links */
+.confession-item a {
+  margin-right: 1rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--link);
+}
+
+.confession-item a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.confession-item a.edit {
+  color: var(--link);
+}
+
+.confession-item a.edit:hover {
+  color: var(--link-hover);
+}
+
+.confession-item a.delete {
+  color: var(--danger);
+}
+
+.confession-item a.delete:hover {
+  color: var(--danger-hover);
+}
+
+/* Keyboard focus */
+.confession-item a:focus-visible {
+  outline: 2px dashed var(--link);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

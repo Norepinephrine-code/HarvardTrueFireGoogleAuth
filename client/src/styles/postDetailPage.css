@@ -1,0 +1,28 @@
+.post-detail-card {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid #444;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-detail-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.post-detail-card h1 {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.post-detail-card small {
+  color: #aaa;
+}
+
+.post-detail-card p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+

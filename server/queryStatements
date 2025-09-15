@@ -1,0 +1,10 @@
+
+
+SELECT 
+  a.id, 
+  a.name, 
+  COUNT(r.id) AS reviewCount
+FROM agents a
+LEFT JOIN reviews r ON a.id = r.agent_id
+GROUP BY a.id, a.name
+ORDER BY a.id;

@@ -1,0 +1,133 @@
+/* Fullscreen dark overlay */
+.review-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  
+  backdrop-filter: blur(2px);       /* blur everything behind */
+  -webkit-backdrop-filter: blur(2px); /* Safari support */
+
+}
+
+
+/* Popup form container */
+.review-form {
+  background: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 1000px;
+  max-width: 90vw;
+  color: #fff;
+}
+
+/* Inputs */
+.review-form input,
+.review-form textarea {
+  background: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #fff;
+  padding: 0.75rem 0.75rem;
+}
+
+/* Buttons container */
+.review-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.review-form .MuiButton-contained {
+  background-color: #333;
+  color: #fff;
+}
+
+.review-form .MuiButton-contained:hover {
+  background-color: #111;
+}
+
+.review-form .MuiButton-outlined {
+  border-color: #444;
+  color: #ccc;
+}
+
+.review-form .MuiButton-outlined:hover {
+  border-color: #666;
+  background-color: #222;
+}
+
+.cancel-button {
+  border-color: #444;
+  color: #ccc;
+}
+
+.cancel-button:hover {
+  border-color: red;
+  color: red;
+  background-color: #222;
+}
+
+.cancel-button:hover .MuiSvgIcon-root {
+  color: red;
+  animation: shake 0.3s ease-in-out;
+}
+
+.create-button:hover .MuiSvgIcon-root {
+    animation: fly 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-3px); }
+  50%  { transform: translateX(3px); }
+  75%  { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes fly {
+  0%   { transform: translateX(0); opacity: 1; }
+  40%  { transform: translateX(150%); opacity: 0; }   /* fly out to the right */
+  60%  { transform: translateX(-150%); opacity: 0; }  /* jump to the left, hidden */
+  100% { transform: translateX(0); opacity: 1; }      /* back to original spot */
+}
+
+.create-review-button:hover .MuiSvgIcon-root {
+    animation: write 1s ease;
+}
+
+@keyframes write {
+  0%   { transform: translateX(0) rotate(0deg); }
+  20%  { transform: translateX(-2px) rotate(-10deg); }
+  40%  { transform: translateX(2px) rotate(8deg); }
+  60%  { transform: translateX(-2px) rotate(-6deg); }
+  80%  { transform: translateX(2px) rotate(6deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+/* Input text */
+.MuiOutlinedInput-input {
+  color: #fff !important;
+}
+
+/* Label (floating placeholder) */
+.MuiInputLabel-root {
+  color: #7a7a7a !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #ffffff !important; /* label color when focused */
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ffb222 !important; /* border when focused */
+}

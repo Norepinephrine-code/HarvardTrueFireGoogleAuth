@@ -1,0 +1,114 @@
+
+
+.navbar-dark .nav-pills {
+  display: flex;        /* make sure it's flexbox */
+  gap: 0.75rem;         /* space between pills */
+}
+
+
+/* Normal */
+.navbar-dark .nav-pills .nav-link {
+  color: var(--muted);
+  background: transparent;
+  border-radius: 9999px;                 /* keep pill look */
+  transition: background .2s ease, color .2s ease;
+}
+
+/* Hover / focus */
+.navbar-dark .nav-pills .nav-link:hover,
+.navbar-dark .nav-pills .nav-link:focus {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+/* Keyboard focus ring */
+.navbar-dark .nav-pills .nav-link:focus-visible {
+  outline: 2px dashed var(--link);
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+/* Active */
+.navbar-dark .nav-pills .nav-link.active,
+.navbar-dark .nav-pills .nav-link.active:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+/* Navbar background */
+.navbar-dark.bg-dark {
+  background: var(--footer-bg) !important; /* darker than surface */
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px); /* Safari */
+}
+
+/* Offcanvas (mobile menu) — dark */
+.offcanvas-dark.offcanvas {
+  background: var(--footer-bg);           /* darker than the navbar surface */
+  color: var(--text);
+  border-left: 1px solid var(--border);   /* separator when sliding from the right */
+  box-shadow: -12px 0 24px rgba(0,0,0,.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px); /* Safari */
+}
+
+.offcanvas-dark .offcanvas-header {
+  background: var(--footer-bg);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Close button contrast (in case you don't use closeClassName="btn-close-white") */
+.offcanvas-dark .btn-close {
+  filter: invert(1) grayscale(100%) brightness(180%);
+  opacity: .9;
+}
+
+/* Body inherits dark colors */
+.offcanvas-dark .offcanvas-body {
+  background: var(--footer-bg);
+  color: var(--text);
+}
+
+/* Backdrop tint a bit stronger for dark UIs */
+.offcanvas-backdrop.show {
+  background-color: #000;
+  opacity: .7;
+}
+
+/* Nav pills inside the offcanvas (mirror desktop styles without .navbar-dark scope) */
+.offcanvas-dark .nav-pills .nav-link {
+  display: flex;
+  gap: 0.5rem;
+
+  color: var(--muted);
+  background: transparent;
+  border-radius: 9999px;
+  transition: background .2s ease, color .2s ease;
+}
+
+.offcanvas-dark .nav-pills .nav-link:hover,
+.offcanvas-dark .nav-pills .nav-link:focus {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.offcanvas-dark .nav-pills .nav-link:focus-visible {
+  outline: 2px dashed var(--link);
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+.offcanvas-dark .nav-pills .nav-link.active,
+.offcanvas-dark .nav-pills .nav-link.active:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+/* Optional: divider lines for vertical nav items */
+.offcanvas-dark .nav-pills .nav-item + .nav-item {
+  margin-top: .25rem;
+}

@@ -1,0 +1,27 @@
+footer {
+  background: var(--footer-bg);
+  color: var(--text);
+  padding-top: 0.25rem;   /* reduce vertical padding */
+  padding-bottom: 0.25rem;
+  font-size: 0.85rem;     /* slightly smaller text */
+  line-height: 1.2;       /* tighter line spacing */
+  height: auto;           /* let content dictate, with less padding */
+  border-top: 1px solid var(--footer-border);
+}
+
+footer a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;      /* keep icons balanced */
+}
+
+footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+footer a:focus-visible {
+  outline: 2px dashed var(--link);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

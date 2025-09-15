@@ -1,0 +1,18 @@
+/* Higher specificity than .bg-body-tertiary */
+.card.card-dark {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  transition: background .2s ease, transform .18s ease, box-shadow .2s ease;
+}
+
+.card.card-dark:hover {
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+}
+
+.card.card-dark .lead {
+  margin: 0;
+  color: inherit;
+}

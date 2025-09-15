@@ -1,0 +1,41 @@
+/* Keep your existing h1 styles */
+h1 {
+  color: var(--text);
+  background: var(--surface);      /* matches dark theme surface */
+  padding-left: 0.625rem;          /* 10px */
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---- ADD THESE: page-scoped layout ---- */
+.freedom-page {
+  /* adjust if your header/footer heights differ */
+  --fp-header-h: 64px;
+  --fp-footer-h: 25px;
+
+  height: calc(100vh - var(--fp-header-h) - var(--fp-footer-h));
+  overflow: hidden; /* clip so columns can scroll inside */
+}
+
+.freedom-page h1.sticky-top {
+  background-color: var(--surface);
+  z-index: 2;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8); /* bottom shadow */
+}
+
+
+.freedom-row {
+  height: 100%;
+  overflow: hidden; /* prevents the row itself from scrolling */
+}
+
+/* Scope the column scroll behavior to this page only */
+.freedom-page .col-md-9,
+.freedom-page .col-md-3 {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto; /* each column gets its own scrollbar */
+}
