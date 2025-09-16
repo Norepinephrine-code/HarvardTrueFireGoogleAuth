@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";                            // Encryption for Hash a
 import passport from "passport";                        // Passport.js
 import GoogleStrategy from "passport-google-oauth20";    // Google OAuth
 import session from "express-session";                  // Session Keeper
-import connectPgSimple from "connect-pg-simple";
+import connectPgSimple from "connect-pg-simple";        // Stores Sessions in Table so it persists
 
 import helmet from "helmet";
 import db from "./db.js";
