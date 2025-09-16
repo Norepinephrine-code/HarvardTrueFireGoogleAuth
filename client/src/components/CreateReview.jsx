@@ -113,7 +113,8 @@ function CreateReview(props) {
       setShowForm(true);
     } else {
       setShowForm(false);
-      window.openNotif("Click this to Sign in with Google to leave a review", "info", "", "/api/auth/google");
+      const authUrl = `${import.meta.env.VITE_API_URL}/auth/google`;
+      window.openNotif("Click this to Sign in with Google to leave a review", "info", "", authUrl);
     }
   }
 
