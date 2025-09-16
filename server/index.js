@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";                            // Encryption for Hash a
 import passport from "passport";                        // Passport.js
 import GoogleStrategy from "passport-google-oauth20";    // Google OAuth
 import session from "express-session";                  // Session Keeper
+import connectPgSimple from "connect-pg-simple";
 
 import helmet from "helmet";
 import db from "./db.js";
@@ -22,9 +23,11 @@ import {
  } from "./SQLStatements.js";
 
 
-envConfig();                                            // for environment variables
-const app = express();                                  // Server Setup
-const PORT = Number(process.env.SERVER_PORT);           // Port Number
+envConfig();                                                               // for environment variables
+const app = express();                                                     // Server Setup
+const PORT = process.env.PORT || Number(process.env.SERVER_PORT) || 3000;  // Server Port
+
+app.set('trust proxy', 1);                              // Trust the proxy from the Host Site
 app.use(helmet());                                      // Middleware Security
 
 app.use(express.json());                                // Similar to Body Parse but for handling the Axios default
@@ -37,8 +40,14 @@ app.use(cors({
     credentials: true
 }));      // Allow from client server
 
+const PgSession = connectPgSimple(session);
+
 app.use(
   session({
+    store: new PgSession({
+                          pool: db,                // 👈 reuse the Pool from db.js
+                          tableName: "session"
+                        }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -54,6 +63,10 @@ app.use(passport.initialize());                         // Initialize passport
 app.use(passport.session());                            // Initialize passport with cookies
 
 /******************************************************************************************/
+
+
+/******************************************************************************************/
+
 
 app.get("/allAgents", async (req, res) => {
   try {
