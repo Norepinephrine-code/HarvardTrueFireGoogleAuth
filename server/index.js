@@ -1,4 +1,5 @@
 /******************************************************************************************/
+import { config as envConfig } from "dotenv";           // Environment Variable
 import express from "express";                          // Express Server
 import cors from "cors";                                // CORS
 import pg from "pg";                                    // Database Connector (PostgreSQL)
@@ -7,9 +8,9 @@ import bcrypt from "bcrypt";                            // Encryption for Hash a
 import passport from "passport";                        // Passport.js
 import GoogleStrategy from "passport-google-oauth20";    // Google OAuth
 import session from "express-session";                  // Session Keeper
-import { config as envConfig } from "dotenv";           // Environment Variable
 
 import helmet from "helmet";
+import db from "./db.js";
 
 import { 
   GET_AGENT_WITH_REVIEWS,
@@ -53,18 +54,6 @@ app.use(passport.initialize());                         // Initialize passport
 app.use(passport.session());                            // Initialize passport with cookies
 
 /******************************************************************************************/
-
-const { Pool } = pg;
-
-const db = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
-});
-
-db.connect();
 
 app.get("/allAgents", async (req, res) => {
   try {

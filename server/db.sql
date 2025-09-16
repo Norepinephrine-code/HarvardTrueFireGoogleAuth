@@ -216,10 +216,13 @@ INSERT INTO reviews (agent_id, username, title, content, created_at) VALUES
 (1, 'Sam Carter', 'Would recommend', 'Would recommend to friends and family.', '2024-09-23'),
 (2, 'Tina Foster', 'Great communication', 'Kept me updated throughout the process.', '2024-09-24');
 
-SELECT a.id, a.name, rev.username, rev.title, rev.content, rev.created_at
-FROM agents a
-LEFT JOIN reviews rev ON a.id = rev.agent_id
 
-SELECT a.id, a.name, rev.username, rev.title, rev.content, rev.created_at FROM agents a LEFT JOIN reviews rev ON a.id = rev.agent_id;
+CREATE TABLE users (
+  email PRIMARY KEY,
+  password TEXT NOT NULL
+);
+
+
+
 
 CREATE INDEX IF NOT EXISTS posts_id_desc ON posts (id DESC);
