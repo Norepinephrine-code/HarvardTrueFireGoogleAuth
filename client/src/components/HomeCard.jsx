@@ -11,6 +11,11 @@ function HomeCard() {
         alt="Harvard Suites Logo"
         className="me-0 pe-0 d-none d-md-inline"
         />
+        <img
+          src={harvardLogo}
+          alt="Harvard Suites Logo"
+          className="d-block mx-auto mb-2 d-md-none"
+        />
         <h1 className="display-4 m-0 p-0">
             <span className="d-inline d-md-none">H</span>arvard <span className="shine">Safespace</span>
         </h1>

@@ -15,6 +15,7 @@ export function FreedomPage() {
   const DISPLAY_COUNT = 10;
 
   const [initialLoading, setInitialLoading] = React.useState(true);
+  const [isError, setIsError] = React.useState(false);
   const [posts, setPosts] = React.useState([]);           // PostsArray
   const [cursor, setCursor] = React.useState(null);       // last id
   const [hasMore, setHasMore] = React.useState(true);     // ifLoad, LoadMore
@@ -60,6 +61,9 @@ export function FreedomPage() {
       setPosts((p) => [...p, ...items]);           // Append the posts
       setCursor(endCursor);                        // Set the Cursor
       setHasMore(more);                            // Update if it has more
+    } catch (err) {
+      console.log(err.message);
+      setIsError(true);
     } finally {
       setLoading(false);                            // Done loading
       setInitialLoading(false); 
@@ -95,6 +99,8 @@ export function FreedomPage() {
               {
                 (initialLoading)  
                 ? (<span>Fetching posts...</span>)
+                : (isError) 
+                ? (<span className="text-danger blink">Failed to fetch...</span>)
                 : (<span>Most Recent</span>)
               }
 
